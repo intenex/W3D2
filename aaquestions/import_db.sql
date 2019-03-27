@@ -1,6 +1,10 @@
-PRAGMA foreign_keys = ON;
-
+DROP TABLE IF EXISTS question_likes;
+DROP TABLE IF EXISTS replies;
+DROP TABLE IF EXISTS question_follows;
+DROP TABLE IF EXISTS questions;
 DROP TABLE IF EXISTS users;
+
+PRAGMA foreign_keys = ON;
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
@@ -31,7 +35,7 @@ CREATE TABLE replies (
   body TEXT NOT NULL,
   question_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
-  parent_id INTEGER NOT NULL,
+  parent_id INTEGER,
 
   FOREIGN KEY (question_id) REFERENCES questions(id),
   FOREIGN KEY (user_id) REFERENCES users(id),
